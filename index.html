@@ -4,13 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quarantine Date Night</title>
-    <link rel="stylesheet" href="index.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="index.css" rel="stylesheet" type="text/css" />
   </head>
 <body>
     <div class="container">
         <h1>Plan the Perfect Quarantine Date Night</h1>
+        <!--Start button-->
+        <button id="start">Start</button>
 
-        <!--User form for location, cuisine, and genre-->
+        <!--User form for food type (hidden at first)-->
         <form id="js-form-food">
             <label for="search-food">What type of food are you in the mood for?</label>
             <input 
@@ -20,16 +24,10 @@
             required
             placeholder="indian"
             />
-            <!--<label for="search-movie">What movie genre are you up for?</label>
-            <input 
-            type="text"
-            name="search-movie"
-            id="js-search-movie"
-            required
-            placeholder="comedy"
-            />!-->
-            <input type="submit" value="Enjoy your night" />
+            <!--Stretch goal is wine paring!-->
+            <input type="submit" value="Search Food" />
         </form>
+        <!--User form for movie type(hidden at first)-->
         <form id="js-form-movie">
             <label for="search-movie">What movie genre do you want to watch?</label>
             <select name="search-movie" id="js-search-movie">
@@ -42,11 +40,14 @@
                 <option value="878">Sci Fi</option>
                 <option value="53">Thriller</option>
             </select>
+            <input type="submit" value="Search Movie">
         </form>
         <!--error message-->
         <p id="js-error-messageFood" class="error-messageFood"></p>
+        <p id="js-error-messageMovie" class="error-messageMovie"></p>
+        <main>
 
-
+        </main>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.js"

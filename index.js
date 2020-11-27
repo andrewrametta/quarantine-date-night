@@ -1,24 +1,37 @@
 // store all API and api Key variables
 const movieApiKey="11de6c637aefaaf2fe43d27cf623fff9"
 const spoonApiKey="ba1dd8bb59a545308760ceddf87a648c"
-//const movieURL="https://api.themoviedb.org/3/movie/popular"
 // stretch goal* const youTubeURL="https://www.googleapis.com/youtube/v3/search"
 
-// create a watch form
-function watchForm() {
-    $("#js-form").submit((event) => {
+const STORE = {
+    food: [
+
+    ]
+
+}
+
+// create a watch form for food
+function watchFormFood() {
+    $("#js-form-food").submit((event) => {
         event.preventDefault();
         const searchCity=$("#js-search-location").val();
         const searchFood=$("#js-search-food").val();
         // stretch goal* const searchMovie=$("js-search-movie").val();
         console.log(searchFood)
         getFood(searchFood)
-        getMovie(searchMovie)
     })
 }
 
-watchForm();
-
+watchFormFood();
+// create a watch form for movie 
+function watchFormMovie() {
+    $("#js-form-movie").submit((event)=>{
+        event.preventDefault();
+        const searchMovie= $("#js-search-movie :selected").val();
+        console.log(searchMovie)
+    })
+}
+watchFormMovie();
 //var myHeaders = new Headers();
 //myHeaders.append("Authorization", "Bearer Ginpac6lJcI7UvfB1IoF4zNjunhDCDm1FnoL3-1xmWe87RmzBXGvpanQaWEl98SHA_RGJy4tkA4kInGzxJ-p5eO-zsP4tYPhKqUr-fxGBG_IhFEfva0eUeJdclW9X3Yx");
 
@@ -28,6 +41,22 @@ watchForm();
     redirect: 'follow'
 };
 */  
+
+function renderFoodForm() {
+    $("main").html(`<form id="js-form-food">
+    <label for="search-food">What type of food are you in the mood for?</label>
+    <input 
+    type="text"
+    name="search-food"
+    id="js-search-food"
+    required
+    placeholder="indian"
+    />
+    <!--Stretch goal is wine paring!-->
+    <input type="submit" value="Search Food" />
+</form>`)
+}
+
 function getFood(searchFood){
     const spoonURL=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&cuisine=${searchFood}`
     fetch(spoonURL)
@@ -43,7 +72,7 @@ function getFood(searchFood){
     })
 }
 
-function getMovie(searchMovie){
+/*function getMovie(searchMovie){
     const spoonURL=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&cuisine=${searchFood}&number=10`
     fetch(spoonURL)
     .then((responseFood)=> {
@@ -57,6 +86,7 @@ function getMovie(searchMovie){
         $("#js-error-messageFood").text(`Something went wrong: ${err.message}`); 
     })
 }
+*/
 // GET function 
 /*function getDateNight(searchFood) {
     const movieURL=`https://api.themoviedb.org/3/movie/popular?api_key=${movieApiKey}`
