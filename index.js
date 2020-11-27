@@ -13,6 +13,7 @@ function watchForm() {
         // stretch goal* const searchMovie=$("js-search-movie").val();
         console.log(searchFood)
         getFood(searchFood)
+        getMovie(searchMovie)
     })
 }
 
@@ -38,7 +39,22 @@ function getFood(searchFood){
     })
     .then((responseJsonFood)=>console.log(responseJsonFood))
     .catch((err)=>{
-        $("#js-error-message").text(`Something went wrong: ${err.message}`); 
+        $("#js-error-messageFood").text(`Something went wrong: ${err.message}`); 
+    })
+}
+
+function getMovie(searchMovie){
+    const spoonURL=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&cuisine=${searchFood}&number=10`
+    fetch(spoonURL)
+    .then((responseFood)=> {
+        if (responseFood.ok){
+            return responseFood.json();
+        }
+        throw new Error(resonseFood.statusText);
+    })
+    .then((responseJsonFood)=>console.log(responseJsonFood))
+    .catch((err)=>{
+        $("#js-error-messageFood").text(`Something went wrong: ${err.message}`); 
     })
 }
 // GET function 

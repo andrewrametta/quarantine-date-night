@@ -8,17 +8,10 @@
   </head>
 <body>
     <div class="container">
-        <h1>Quarantine Date Night</h1>
+        <h1>Plan the Perfect Quarantine Date Night</h1>
 
         <!--User form for location, cuisine, and genre-->
-        <form id="js-form">
-            <!--<label for="search-location">What City are you in?</label>
-            <input 
-            type="text" 
-            name="search-location" 
-            id="js-search-location" 
-            required 
-            placeholder="Tampa"/>!-->
+        <form id="js-form-food">
             <label for="search-food">What type of food are you in the mood for?</label>
             <input 
             type="text"
@@ -37,8 +30,23 @@
             />!-->
             <input type="submit" value="Enjoy your night" />
         </form>
+        <form id="js-form-movie">
+            <label for="search-movie">What movie genre do you want to watch?</label>
+            <select name="search-movie" id="js-search-movie">
+                <option value="28">Action</option>
+                <option value="12">Adventure</option>
+                <option value="35">Comedy</option>
+                <option value="18">Drama</option>
+                <option value="27">Horror</option>
+                <option value="10749">Romance</option>
+                <option value="878">Sci Fi</option>
+                <option value="53">Thriller</option>
+            </select>
+        </form>
         <!--error message-->
-        <p id="js-error-message" class="error-message"></p>
+        <p id="js-error-messageFood" class="error-messageFood"></p>
+
+
     </div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.js"
