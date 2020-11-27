@@ -9,6 +9,16 @@ const STORE = {
     ]
 
 }
+// create start function to listen to button click
+function renderStart () {
+    $("main").html(`
+    <section class="start">
+    <h1>Plan the Perfect Quarantine Date Night</h1>
+    <h4>Pick a recipe and movie for a pefect date night in!</h4>
+    <button id="start">Start</button>
+  </section>
+    `)
+}
 
 // create a watch form for food
 function watchFormFood() {
@@ -42,20 +52,6 @@ watchFormMovie();
 };
 */  
 
-function renderFoodForm() {
-    $("main").html(`<form id="js-form-food">
-    <label for="search-food">What type of food are you in the mood for?</label>
-    <input 
-    type="text"
-    name="search-food"
-    id="js-search-food"
-    required
-    placeholder="indian"
-    />
-    <!--Stretch goal is wine paring!-->
-    <input type="submit" value="Search Food" />
-</form>`)
-}
 
 function getFood(searchFood){
     const spoonURL=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&cuisine=${searchFood}`
