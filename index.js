@@ -1,15 +1,17 @@
+
 // store all API and api Key variables
 const movieApiKey="11de6c637aefaaf2fe43d27cf623fff9"
 const spoonApiKey="ba1dd8bb59a545308760ceddf87a648c"
 // stretch goal* const youTubeURL="https://www.googleapis.com/youtube/v3/search"
 
 const STORE = {
-    food: {},
-    movie: {},
+    foodId: [],
+    movieId: [],
+    foodTitle: "",
+    movieTitle: [],
     started: false,
     formFood: false,
-    formMovie: false,
-
+    formMovie: false
 }
 /*------- Render functions-----------------------*/
 
@@ -37,7 +39,7 @@ function renderFoodForm() {
             required
             placeholder="indian"
             />
-            <input type="submit" value="Search Food" class="food"/>
+            <input type="button" value="Search Food" id="search-food"/>
     </form>
     `)
 }
@@ -70,32 +72,30 @@ function renderResults() {
 function render() {
     if (!STORE.started) {
         renderStart();
-    } else if (STORE.formFood & STORE.formMovie) {
-        renderResults();
-    } else if (!STORE.formFood & !STORE.formMovie) {
+    } else if ((!STORE.formFood) & (!STORE.formMovie)) {
         renderFoodForm();
-    } else if (STORE.formFood & !STORE.formMovie) {
+    } else if ((STORE.formFood) & (!STORE.formMovie)) {
         renderMovieForm();
+    } else if (STORE.formFood === true & STORE.formMovie === true) {
+        renderResults();
     }
 }
 
 /*------- Watch forms-----------------------*/
 // create a watch form for food
 function watchFormFood() {
-    $("#js-form-food").submit((event) => {
-        event.preventDefault();
-        const searchCity=$("#js-search-location").val();
-        const searchFood=$("#js-search-food").val();
-        // stretch goal* const searchMovie=$("js-search-movie").val();
-        console.log(searchFood);
-        getFood(searchFood);
-    })
-}
-
+    // listen for submit button 
+    $("main").on('click', '#search-food', function(event){
+      event.preventDefault();
+      const searchFood= $("#js-search-food").val()
+      getFood(searchFood);
+    });
+  }
+   
 watchFormFood();
 // create a watch form for movie 
 function watchFormMovie() {
-    $("#js-form-movie").submit((event)=>{
+    $("#js-form-movie").click((event)=>{
         event.preventDefault();
         const searchMovie= $("#js-search-movie :selected").val();
         console.log(searchMovie);
@@ -104,6 +104,17 @@ function watchFormMovie() {
 }
 watchFormMovie();
 
+/*------------------ watch results functions ---------------*/
+function watchFoodResults() {
+    $("main").on("click", ".recipe-result", e=> {
+        STORE.foodId = Number($(e.currentTarget).attr('id'))
+        STORE.foodTitle = $(e.currentTarget).attr("alt");
+        console.log(STORE.foodId);
+        console.log(STORE.foodTitle);
+    });
+}
+
+watchFoodResults()
 /*------------------ GET functions ------------------------*/
 // get food
 function getFood(searchFood){
@@ -113,9 +124,9 @@ function getFood(searchFood){
         if (responseFood.ok){
             return responseFood.json();
         }
-        throw new Error(resonseFood.statusText);
+        throw new Error(responseFood.statusText);
     })
-    .then((responseJsonFood)=>console.log(responseJsonFood))
+    .then((responseJsonFood)=>displayFoodResults(responseJsonFood))
     .catch((err)=>{
         $("#js-error-messageFood").text(`Something went wrong: ${err.message}`); 
     })
@@ -124,16 +135,40 @@ function getFood(searchFood){
 function getMovie(searchMovie){
     const movieURL=`https://api.themoviedb.org/3/discover/movie?api_key=${movieApiKey}&language=en-US&sort_by=popularity.desc&with_genres=${searchMovie}`
     fetch(movieURL)
-    .then((responseFood)=> {
-        if (responseFood.ok){
-            return responseFood.json();
+    .then((responseMovie)=> {
+        if (responseMovie.ok){
+            return responseMovie.json();
         }
-        throw new Error(resonseFood.statusText);
+        throw new Error(responseMovie.statusText);
     })
-    .then((responseJsonFood)=>console.log(responseJsonFood))
+    .then((responseJsonMovie)=>console.log(responseJsonMovie))
     .catch((err)=>{
         $("#js-error-messageFood").text(`Something went wrong: ${err.message}`); 
     })
+}
+
+/*------------------Display Results--------------------*/
+// display results function 
+function displayFoodResults(responseJsonFood) {
+    console.log(responseJsonFood);
+  // iterate through the articles array, stopping at the length of array
+  $("main").html(`
+  <h2>Choose the recipe you want then click the Next button</h2>
+    <button id="food">Next</button>
+    <p class="result-id"></p>
+  `)
+  for (let i = 0; i < responseJsonFood.results.length; i++) {
+    // for each state in the results
+    //array, add a list item to the results
+    //list with the park name, url, description, and address
+    $("main").append(`
+      <div>
+      <h3>${responseJsonFood.results[i].title}</h3>
+      <img src=${responseJsonFood.results[i].image} alt=${responseJsonFood.results[i].title} class="recipe-result" id="${responseJsonFood.results[i].id}">
+      </div>`,
+    );
+  }
+
 }
 
 /*---------------- event handlers -------------------------*/
@@ -142,18 +177,31 @@ function onStart() {
 }
 
 function onFood() {
-    $("main").on('clicl', '')
+    $("main").on('click', '#food', foodFill);
+}
+function onMovie() {
+    $("main").on('click', '#movie', movieFill)
 }
 
 function onRestart() {
     $("main").on('click', '#restart', restartPlan);
 }
 
-
 function startedPlan() {
     STORE.started = true;
     render();
 }
+
+function foodFill() {
+    STORE.formFood = true;
+    render();
+}
+
+function movieFill() {
+    STORE.formMovie = true;
+    render();
+}
+
 
 function restartPlan() {
     STORE.started = false;
@@ -171,8 +219,10 @@ function restartPlan() {
 */
 
 function dateNight() {
-    onRestart();
+    //onRestart();
     onStart();
+    onFood();
+    onMovie();
     render();
 }
 
