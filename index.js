@@ -1,4 +1,4 @@
-
+"use strict"
 // store all API and api Key variables
 const movieApiKey="11de6c637aefaaf2fe43d27cf623fff9"
 const spoonApiKey="ba1dd8bb59a545308760ceddf87a648c"
@@ -12,7 +12,7 @@ const STORE = {
     started: false,
     formFood: false,
     formMovie: false,
-    results: false,
+    results: false
 }
 /*------- Render functions-----------------------*/
 
@@ -47,6 +47,9 @@ function renderFoodForm() {
 // render movie form
 function renderMovieForm() {
     $('h3').empty();
+    console.log("hello")
+    console.log(STORE.foodTitle)
+    console.log(STORE.foodId)
     $("main").html(`
     <h2>Step 2</h2>
     <h3>Next comes the entertainment</h3>
@@ -108,8 +111,11 @@ function watchFormMovie() {
     $("main").on('click', '#search-movie', function(event){
         event.preventDefault();
         console.log('hello')
+        console.log(STORE.foodId)
         const searchMovie= $("#js-search-movie").val()
+        console.log(STORE.foodId)
         getMovie(searchMovie);
+        console.log(STORE.foodId)
       });
     }
 watchFormMovie();
@@ -119,6 +125,8 @@ function watchResults() {
         console.log('hello')
         console.log(STORE.movieId)
         console.log(STORE.foodId)
+        console.log(STORE.movieTitle)
+        console.log(STORE.foodTitle)
         //getFoodResults(STORE.foodId)
         //getMovieResult(STORE.movieId)
     })
@@ -138,12 +146,17 @@ function watchFoodResults() {
 watchFoodResults()
 
 function watchMovieResults() {
+    console.log("before event " + STORE.foodId) 
     $("main").on("click", ".movie-result", e=> {
+        console.log(STORE.foodId);
         STORE.movieId = Number($(e.currentTarget).attr('id'));
         console.log(STORE.MovieId);
         STORE.movieTitle = $(e.currentTarget).attr('alt')
+        console.log("hello")
         console.log(STORE.MovieTitle);
+        console.log(STORE.foodId);
         $('h4').text(`You selected ${STORE.movieTitle}, if this is correct click the Next button, if not choose a differnt movie`)
+        console.log(STORE.foodTitle);
     });
 }
 
@@ -199,7 +212,7 @@ function displayFoodResults(responseJsonFood) {
       <div class="food-results">
       <h3>${responseJsonFood.results[i].title}</h3>
       <img src="${responseJsonFood.results[i].image}" alt="${responseJsonFood.results[i].title}" class="recipe-result" id="${responseJsonFood.results[i].id}">
-      </div>`,
+      </div>`
     );
   }
 
@@ -207,6 +220,7 @@ function displayFoodResults(responseJsonFood) {
 
 function displayMovieResults(responseJsonMovie) {
     console.log(responseJsonMovie);
+    console.log("before loop" + STORE.foodId)
   // iterate through the articles array, stopping at the length of array
   $("main").html(`
   <h2>Choose the movie you want by clicking on the movie poster</h2>
@@ -222,8 +236,9 @@ function displayMovieResults(responseJsonMovie) {
       <h3>${responseJsonMovie.results[i].title}</h3>
       <img src="https://image.tmdb.org/t/p/w300/${responseJsonMovie.results[i].poster_path}" alt="${responseJsonMovie.results[i].title}" class="recipe-result" id="${responseJsonMovie.results[i].id}">
       <p>${responseJsonMovie.results[i].overview}</p>
-      </div>`,
+      </div>`
     );
+    console.log("after loop" + STORE.foodId)
   }
 
 }
