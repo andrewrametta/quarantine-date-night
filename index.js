@@ -4,6 +4,7 @@ const movieApiKey="11de6c637aefaaf2fe43d27cf623fff9"
 const spoonApiKey="ba1dd8bb59a545308760ceddf87a648c"
 // stretch goal* const youTubeURL="https://www.googleapis.com/youtube/v3/search"
 
+// create a store to store all info needed 
 const STORE = {
     foodId: [],
     movieId: [],
@@ -12,8 +13,7 @@ const STORE = {
     moviePoster: [],
     started: false,
     formFood: false,
-    formMovie: false,
-    results: false
+    formMovie: false
 }
 /*------- Render functions-----------------------*/
 
@@ -83,6 +83,7 @@ function renderResults() {
     `);
 }
 
+//create render function to go through app
 function render() {
     if (!STORE.started) {
         renderStart();
@@ -315,6 +316,12 @@ function movieFill() {
 }
 
 function restartPlan() {
+    // empty store and change everything to false
+    STORE.foodId = [];
+    STORE.movieId = [];
+    STORE.foodTitle = [];
+    STORE.movieTitle = [];
+    STORE.moviePoster = [];
     STORE.started = false;
     STORE.formFood = false;
     STORE.formMovie = false;
