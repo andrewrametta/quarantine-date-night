@@ -225,16 +225,12 @@ function getMovieResults(movieIdResults){
 // display results function 
 function displayFoodResults(responseJsonFood) {
     console.log(responseJsonFood);
-  // iterate through the articles array, stopping at the length of array
   $("main").html(`
   <h2>Choose the recipe you want by clicking on the picture that looks good</h2>
     <button id="food">Next</button>
     <h4 class="result-id"></h4>
   `)
   for (let i = 0; i < responseJsonFood.results.length; i++) {
-    // for each state in the results
-    //array, add a list item to the results
-    //list with the park name, url, description, and address
     $("main").append(`
       <div class="food-results">
       <h3>${responseJsonFood.results[i].title}</h3>
@@ -247,16 +243,12 @@ function displayFoodResults(responseJsonFood) {
 
 function displayMovieResults(responseJsonMovie) {
     console.log(responseJsonMovie);
-  // iterate through the articles array, stopping at the length of array
   $("main").html(`
   <h2>Choose the movie you want by clicking on the movie poster</h2>
     <button id="movie">Next</button>
     <h4 class="result-id"></h4>
   `)
   for (let i = 0; i < responseJsonMovie.results.length; i++) {
-    // for each state in the results
-    //array, add a list item to the results
-    //list with the park name, url, description, and address
     $("main").append(`
       <div class="movie-results">
       <h3>${responseJsonMovie.results[i].title}</h3>
