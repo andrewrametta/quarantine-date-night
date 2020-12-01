@@ -9,6 +9,7 @@ const STORE = {
     movieId: [],
     foodTitle: [],
     movieTitle: [],
+    moviePoster: [],
     started: false,
     formFood: false,
     formMovie: false,
@@ -122,13 +123,12 @@ watchFormMovie();
 
 function watchResults() {
     $('main').on("click", "#results", function(){
-        console.log('hello')
-        console.log(STORE.movieId)
-        console.log(STORE.foodId)
-        console.log(STORE.movieTitle)
-        console.log(STORE.foodTitle)
-        //getFoodResults(STORE.foodId)
-        //getMovieResult(STORE.movieId)
+        const foodIdResult = STORE.foodId 
+        console.log(foodIdResult)
+        const movieIdResults = STORE.movieId
+        console.log(movieIdResults)
+        getFoodResults(foodIdResult)
+        getMovieResults(movieIdResults)
     })
 }
 watchResults();
@@ -145,18 +145,15 @@ function watchFoodResults() {
 
 watchFoodResults()
 
-function watchMovieResults() {
-    console.log("before event " + STORE.foodId) 
+function watchMovieResults() { 
     $("main").on("click", ".movie-result", e=> {
-        console.log(STORE.foodId);
         STORE.movieId = Number($(e.currentTarget).attr('id'));
-        console.log(STORE.MovieId);
+        console.log(STORE.movieId);
         STORE.movieTitle = $(e.currentTarget).attr('alt')
+        STORE.moviePoster = $(e.currentTarget).attr('src')
         console.log("hello")
-        console.log(STORE.MovieTitle);
-        console.log(STORE.foodId);
+        console.log(STORE.movieTitle);
         $('h4').text(`You selected ${STORE.movieTitle}, if this is correct click the Next button, if not choose a differnt movie`)
-        console.log(STORE.foodTitle);
     });
 }
 
@@ -190,7 +187,37 @@ function getMovie(searchMovie){
     })
     .then((responseJsonMovie)=> displayMovieResults(responseJsonMovie))
     .catch((err)=>{
+        $("#js-error-messageMovie").text(`Something went wrong: ${err.message}`); 
+    })
+}
+
+function getFoodResults(foodIdResults){
+    const spoonURLResults=`https://api.spoonacular.com/recipes/${foodIdResults}/information?apiKey=${spoonApiKey}`
+    fetch(spoonURLResults)
+    .then((responseFoodResults)=> {
+        if (responseFoodResults.ok){
+            return responseFoodResults.json();
+        }
+        throw new Error(responseFoodResults.statusText);
+    })
+    .then((responseJsonFoodResults)=> displayDateFoodResults(responseJsonFoodResults))
+    .catch((err)=>{
         $("#js-error-messageFood").text(`Something went wrong: ${err.message}`); 
+    })
+}
+
+function getMovieResults(movieIdResults){
+    const movieURLResults=`https://api.themoviedb.org/3/movie/${movieIdResults}/watch/providers?api_key=${movieApiKey}`
+    fetch(movieURLResults)
+    .then((responseMovieResults)=> {
+        if (responseMovieResults.ok){
+            return responseMovieResults.json();
+        }
+        throw new Error(responseMovieResults.statusText);
+    })
+    .then((responseJsonMovieResults)=> displayDateMovieResults(responseJsonMovieResults))
+    .catch((err)=>{
+        $("#js-error-messageMovie").text(`Something went wrong: ${err.message}`); 
     })
 }
 
@@ -220,7 +247,6 @@ function displayFoodResults(responseJsonFood) {
 
 function displayMovieResults(responseJsonMovie) {
     console.log(responseJsonMovie);
-    console.log("before loop" + STORE.foodId)
   // iterate through the articles array, stopping at the length of array
   $("main").html(`
   <h2>Choose the movie you want by clicking on the movie poster</h2>
@@ -234,13 +260,34 @@ function displayMovieResults(responseJsonMovie) {
     $("main").append(`
       <div class="movie-results">
       <h3>${responseJsonMovie.results[i].title}</h3>
-      <img src="https://image.tmdb.org/t/p/w300/${responseJsonMovie.results[i].poster_path}" alt="${responseJsonMovie.results[i].title}" class="recipe-result" id="${responseJsonMovie.results[i].id}">
+      <img src="https://image.tmdb.org/t/p/w300/${responseJsonMovie.results[i].poster_path}" alt="${responseJsonMovie.results[i].title}" class="movie-result" id="${responseJsonMovie.results[i].id}">
       <p>${responseJsonMovie.results[i].overview}</p>
       </div>`
     );
-    console.log("after loop" + STORE.foodId)
   }
 
+}
+
+function displayDateFoodResults(responseJsonFoodResults) {
+    console.log(responseJsonFoodResults);
+  $("main").append(`
+  <h2>Enjoy your Dinner</h2>
+  <h3>${responseJsonFoodResults.title}</h3>
+  <img src="${responseJsonFoodResults.image}" alt="${responseJsonFoodResults.title}" class="date-food" >
+  <h4>Time to prepare: ${responseJsonFoodResults.readyInMinutes} minutes<h4>    
+  <a href="${responseJsonFoodResults.spoonacularSourceUrl}" target="_blank">Get Recipe</a>
+  `)
+}
+
+function displayDateMovieResults(responseJsonMovieResults) {
+    console.log(responseJsonMovieResults);
+  $("main").append(`
+  <h2>Enjoy your Movie</h2>
+    <h3>${STORE.movieTitle}</h3>
+    <img src="${STORE.moviePoster}" alt="${STORE.movieTitle}" class="date-movie" >
+    <a href="${responseJsonMovieResults.results.US.link}" target="_blank">Here is where you can find your movie</h4>
+    <ul class="movie-watch"></ul>
+  `)
 }
 
 
@@ -260,10 +307,6 @@ function onRestart() {
     $("main").on('click', '#restart', restartPlan);
 }
 
-/*function onResults() {
-    $("main").on('click', '#results', results)
-}
-*/
 function startedPlan() {
     STORE.started = true;
     render();
@@ -278,11 +321,7 @@ function movieFill() {
     STORE.formMovie = true;
     render();
 }
-/*function results() {
-    STORE.results = true;
-    render();
-}
-*/
+
 function restartPlan() {
     STORE.started = false;
     STORE.formFood = false;
@@ -296,7 +335,6 @@ function dateNight() {
     onStart();
     onFood();
     onMovie();
-    //onResults();
     render();
 }
 
