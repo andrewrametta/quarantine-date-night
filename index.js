@@ -260,6 +260,10 @@ function getMovieResults(movieIdResults){
 // display results function 
 function displayFoodResults(responseJsonFood) {
     console.log(responseJsonFood);
+    if (responseJsonFood.totalResults === 0) {
+        $("main").html(`<h2>Hmm this is emberassing but the food selection you chose did not match any recipies</h2>
+        <button id="restart">Restart</button>`)
+    } else {
   $("main").html(`
   <h2>Choose the recipe you want by clicking on the picture that looks good</h2>
     <button id="food">Next</button>
@@ -273,7 +277,7 @@ function displayFoodResults(responseJsonFood) {
       </div>`
     );
   }
-
+    }
 }
 
 function displayMovieResults(responseJsonMovie) {
