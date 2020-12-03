@@ -61,7 +61,19 @@ function renderFoodForm() {
             <option value="Spanish">Spanish</option>
             <option value="Thai">Thai</option>
             <option value="Vietnamese">Vietnamese</option>
-        </select>
+            </select>
+            <label for="search-diet">Do you have any dietary restrictions?</label>
+            <select name="search-diet" id="js-search-diet">
+            <option value="">none</option>
+            <option value="Gluten Free">Gluten Free</option>
+            <option value="Ketogenic">Keto</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Pescetarian">Pescetarian</option>
+            <option value="Paleo">Paleo</option>
+            <option value="Primal">Primal</option>
+            <option value="Whole30">Whole30</option>
+            </select>
             <input type="button" value="Search Food" id="search-food"/>
     </form>
     `)
@@ -124,7 +136,8 @@ function watchFormFood() {
     $("main").on('click', '#search-food', function(event){
       event.preventDefault();
       const searchFood= $("#js-search-food").val()
-      getFood(searchFood);
+      const searchDiet = $("#js-search-diet").val()
+      getFood(searchFood, searchDiet);
     });
   }
    
@@ -183,8 +196,8 @@ watchMovieResults()
 
 /*------------------ GET functions ------------------------*/
 // get food
-function getFood(searchFood){
-    const spoonURL=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&cuisine=${searchFood}`
+function getFood(searchFood, searchDiet){
+    const spoonURL=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonApiKey}&cuisine=${searchFood}&diet=${searchDiet}`
     fetch(spoonURL)
     .then((responseFood)=> {
         if (responseFood.ok){
