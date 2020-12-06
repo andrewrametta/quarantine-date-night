@@ -338,7 +338,7 @@ function displayDateFoodResults(responseJsonFoodResults) {
   <h3>${responseJsonFoodResults.title}</h3>
   <img src="${responseJsonFoodResults.image}" alt="${responseJsonFoodResults.title}" class="date-food" >
   <h4>Time to prepare: ${responseJsonFoodResults.readyInMinutes} minutes<h4>    
-  <a href="${responseJsonFoodResults.spoonacularSourceUrl}" target="_blank">Get Recipe</a>
+  <a href="${responseJsonFoodResults.spoonacularSourceUrl}" target="_blank">Get your Recipe</a>
   <button id="restart">Restart</button>
   </div>
   `);
@@ -351,7 +351,7 @@ function displayDateMovieResults(responseJsonMovieResults) {
   <h2>Enjoy your Movie</h2>
     <h3>${STORE.movieTitle}</h3>
     <img src="${STORE.moviePoster}" alt="${STORE.movieTitle}" class="date-movie" >
-    <h4><a href="${responseJsonMovieResults.results.US.link}" target="_blank">Here is where you can find your movie</h4>
+    <h4><a href="${responseJsonMovieResults.results.US.link}" target="_blank">Find your Movie</h4>
     </div>
   `);
 }

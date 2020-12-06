@@ -40,6 +40,7 @@ main {
   border: none;
   color: white;
   font-size: 18px;
+  width: 120px;
 }
 
 .start h4 {
@@ -441,5 +442,34 @@ a:active {
     flex-grow: 1;
     max-width: 25%;
     flex-basis: auto;
+  }
+  h1 {
+    font-size: 86px;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  h2 {
+    font-size: 64px;
+  }
+
+  h3 {
+    font-size: 48px;
+  }
+
+  h4 {
+    font-size: 32px;
+  }
+  p {
+    text-align: center;
+    font-size: 20px;
+  }
+  .food-results h3 {
+    font-size: 24px;
+  }
+  .movie-results h3 {
+    font-size: 24px;
+  }
+  a {
+    font-size: 24px;
   }
 }
