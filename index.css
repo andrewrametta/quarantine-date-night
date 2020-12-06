@@ -103,7 +103,7 @@ label {
   margin-top: 30px;
   padding: 5px;
   text-align: center;
-  width: 120px;
+  width: 150px;
   margin: 30px auto;
 }
 
@@ -214,7 +214,7 @@ h4 {
   margin-top: 30px;
   padding: 5px;
   text-align: center;
-  width: 120px;
+  width: 150px;
   margin: 30px auto;
 }
 
@@ -416,3 +416,30 @@ a:active {
 }
 
 /*-------- Desktop version ---------------*/
+
+#group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+#item {
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+@media all and (min-width: 600px) {
+  #group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  #item {
+    flex-grow: 1;
+    max-width: 25%;
+    flex-basis: auto;
+  }
+}

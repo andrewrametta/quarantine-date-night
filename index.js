@@ -94,7 +94,7 @@ function renderMovieForm() {
   <div class="bg-movie-form">
     <section class="step-two">
     <h2>Step 2</h2>
-    <h3>Next comes the entertainment</h3>
+    <h3>Let's pick some Entertainment</h3>
     <form id="js-form-movie">
     <label for="search-movie" class="movie-select">What movie genre do you want to watch?</label>
     <select name="search-movie" id="js-search-movie">
@@ -292,14 +292,16 @@ function displayFoodResults(responseJsonFood) {
   } else {
     $("main").html(`
     <div class="food-results-bg">
-  <h2>Choose the recipe you want by clicking on the picture that looks good</h2>
+  <h2>What looks good?</h2>
+  <p>Click the recipe picture you want to select</p>
     <button id="food">Next</button>
     <h4 class="result-id"></h4>
-    
+    <div id="group"></div>
+    </div>
   `);
     for (let i = 0; i < responseJsonFood.results.length; i++) {
-      $("main").append(`
-      <div class="food-results">
+      $("#group").append(`
+      <div class="food-results" id="item">
       <h3>${responseJsonFood.results[i].title}</h3>
       <img src="${responseJsonFood.results[i].image}" alt="${responseJsonFood.results[i].title}" class="recipe-result" id="${responseJsonFood.results[i].id}">
       </div>`);
@@ -311,14 +313,16 @@ function displayMovieResults(responseJsonMovie) {
   console.log(responseJsonMovie);
   $("main").html(`
   <div class="movie-results-bg">
-  <h2>Choose the movie you want by clicking on the movie poster</h2>
+  <h2>Anything look good?</h2>
+  <p>Click the movie poster to select your movie</p>
     <button id="movie">Next</button>
     <h4 class="result-id"></h4>
+    <div id="group"></div>
     </div>
   `);
   for (let i = 0; i < responseJsonMovie.results.length; i++) {
-    $("main").append(`
-      <div class="movie-results">
+    $("#group").append(`
+      <div class="movie-results" id="item">
       <h3>${responseJsonMovie.results[i].title}</h3>
       <img src="https://image.tmdb.org/t/p/w300/${responseJsonMovie.results[i].poster_path}" alt="${responseJsonMovie.results[i].title}" class="movie-result" id="${responseJsonMovie.results[i].id}">
       <p>${responseJsonMovie.results[i].overview}</p>
