@@ -146,6 +146,8 @@ label {
   border: none;
   color: white;
   font-size: 20px;
+  width: 120px;
+  text-align: center;
 }
 
 h4 {
@@ -258,6 +260,8 @@ h4 {
   border: none;
   color: white;
   font-size: 20px;
+  width: 120px;
+  text-align: center;
 }
 
 h4 {
