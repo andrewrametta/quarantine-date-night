@@ -1,22 +1,390 @@
-.hidden {
-    display: none;
-  }
+body {
+  margin: 0px;
+}
 
+main {
+  background-color: rgb(162, 162, 162);
+  margin-bottom: -50px;
+}
 
+/* Title Screen */
 
+.bg-image {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* The image used */
+  background-image: url("couch.jpg");
+  /* Full height */
+  min-height: 100vh;
 
-/*.bg-image {
-        /* The image used */
-        /*background-image: url("couch.jpg");
-      
-      
-      
-        /* Full height */
-        /*height: 100%;
-      
-        /* Center and scale the image nicely */
-       /* background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-*/
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #b0e6db;
+  text-align: center;
+}
+
+#start {
+  background-color: #f57c96;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 18px;
+}
+
+.start h4 {
+  color: white;
+  font-size: 22px;
+}
+
+/* Food Form */
+
+.bg-image-recipe {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* The image used */
+  background-image: url("recipe-form.jpg");
+  /* Full height */
+  min-height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #b0e6db;
+  text-align: center;
+}
+
+.step-one h2 {
+  color: #e8fcb6;
+}
+
+.food-type {
+  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.dietary-restrictions {
+  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+label,
+input {
+  display: block;
+  text-align: center;
+}
+
+label {
+  margin: 10px;
+}
+/* search food button */
+#search-food {
+  background-color: #f57c96;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin-top: 30px;
+  padding: 5px;
+  text-align: center;
+  width: 120px;
+  margin: 30px auto;
+}
+
+/* food results  */
+
+.food-results-bg {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* The image used */
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #b0e6db;
+  text-align: center;
+}
+
+.food-results {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+}
+
+.food-results img {
+  width: 300px;
+  margin-bottom: 35px;
+  margin-top: 0px;
+}
+
+#food {
+  background-color: #f57c96;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 20px;
+}
+
+h4 {
+  color: #e8fcb6;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+/* Food results error */
+
+.food-results-error {
+  color: white;
+  margin-top: -20px;
+  padding: 30px 20px;
+  text-align: center;
+  background-image: url("error.jpg");
+  /* Full height */
+  min-height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Movie Form */
+.bg-movie-form {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* The image used */
+  background-image: url("movie-form.jpg");
+  /* Full height */
+  min-height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+.bg-movie-form h2 {
+  color: #e8fcb6;
+}
+
+.bg-movie-form h3 {
+  color: #b0e6db;
+}
+
+.movie-select {
+  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+#search-movie {
+  background-color: #f57c96;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin-top: 30px;
+  padding: 5px;
+  text-align: center;
+  width: 120px;
+  margin: 30px auto;
+}
+
+/* movie results */
+
+.movie-results-bg {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-top: -30px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #b0e6db;
+  text-align: center;
+}
+
+.movie-results {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+}
+
+.movie-results h3 {
+  color: #b0e6db;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.movie-results img {
+  width: 250px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+#movie {
+  background-color: #f57c96;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 20px;
+}
+
+h4 {
+  color: #e8fcb6;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+p {
+  font-size: 18px;
+  margin-top: 0px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 50px;
+  text-align: justify;
+}
+
+/*  check results  */
+
+.results-check {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* The image used */
+  background-image: url("results-check.jpg");
+  /* Full height */
+  min-height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+.results-check h2 {
+  color: white;
+}
+
+#restart {
+  background-color: #f57c96;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin-top: 30px;
+  padding: 5px;
+  text-align: center;
+  width: 150px;
+  margin: 30px auto;
+}
+
+#results {
+  background-color: #f57c96;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin-top: 30px;
+  padding: 5px;
+  text-align: center;
+  width: 150px;
+  margin: 30px auto;
+}
+
+/* final results food screen */
+
+.food-results-final {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-top: -30px;
+  margin-bottom: 100px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #b0e6db;
+  text-align: center;
+  background-color: rgb(162, 162, 162);
+}
+
+.food-results-final h3 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.food-results-final img {
+  width: 250px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+/* movie results final */
+
+.movie-results-final {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-top: -30px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #b0e6db;
+  text-align: center;
+}
+
+.movie-results-final h3 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.movie-results-final img {
+  width: 250px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+/* links styling*/
+a:link {
+  color: teal;
+}
+a:visited {
+  color: white;
+}
+a:hover {
+  color: #f57c96;
+}
+a:active {
+  color: #b0e6db;
+}
+/* catch error */
