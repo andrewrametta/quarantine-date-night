@@ -335,6 +335,7 @@ function displayDateFoodResults(responseJsonFoodResults) {
   <img src="${responseJsonFoodResults.image}" alt="${responseJsonFoodResults.title}" class="date-food" >
   <h4>Time to prepare: ${responseJsonFoodResults.readyInMinutes} minutes<h4>    
   <a href="${responseJsonFoodResults.spoonacularSourceUrl}" target="_blank">Get Recipe</a>
+  <button id="restart">Restart</button>
   </div>
   `);
 }
