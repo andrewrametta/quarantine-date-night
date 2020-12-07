@@ -2,7 +2,6 @@
 // store all API and api Key variables
 const movieApiKey = "11de6c637aefaaf2fe43d27cf623fff9";
 const spoonApiKey = "ba1dd8bb59a545308760ceddf87a648c";
-// stretch goal* const youTubeURL="https://www.googleapis.com/youtube/v3/search"
 
 // create a store to store all info needed
 const STORE = {
@@ -87,9 +86,6 @@ function renderFoodForm() {
 // render movie form
 function renderMovieForm() {
   $("h3").empty();
-  console.log("hello");
-  console.log(STORE.foodTitle);
-  console.log(STORE.foodId);
   $("main").html(`
   <div class="bg-movie-form">
     <section class="step-two">
@@ -158,12 +154,8 @@ watchFormFood();
 function watchFormMovie() {
   $("main").on("click", "#search-movie", function (event) {
     event.preventDefault();
-    console.log("hello");
-    console.log(STORE.foodId);
     const searchMovie = $("#js-search-movie").val();
-    console.log(STORE.foodId);
     getMovie(searchMovie);
-    console.log(STORE.foodId);
   });
 }
 watchFormMovie();
@@ -171,9 +163,7 @@ watchFormMovie();
 function watchResults() {
   $("main").on("click", "#results", function () {
     const foodIdResult = STORE.foodId;
-    console.log(foodIdResult);
     const movieIdResults = STORE.movieId;
-    console.log(movieIdResults);
     $("main").empty();
     getFoodResults(foodIdResult);
     getMovieResults(movieIdResults);
@@ -184,9 +174,7 @@ watchResults();
 function watchFoodResults() {
   $("main").on("click", ".recipe-result", (e) => {
     STORE.foodId = Number($(e.currentTarget).attr("id"));
-    console.log(STORE.foodId);
     STORE.foodTitle = $(e.currentTarget).attr("alt");
-    console.log(STORE.foodTitle);
     $(window).scrollTop(0);
     $("h4").text(
       `You selected ${STORE.foodTitle}, if this is correct click the Next button, if not choose a different recipe`
@@ -199,12 +187,9 @@ watchFoodResults();
 function watchMovieResults() {
   $("main").on("click", ".movie-result", (e) => {
     STORE.movieId = Number($(e.currentTarget).attr("id"));
-    console.log(STORE.movieId);
     STORE.movieTitle = $(e.currentTarget).attr("alt");
     STORE.moviePoster = $(e.currentTarget).attr("src");
-    console.log("hello");
     $(window).scrollTop(0);
-    console.log(STORE.movieTitle);
     $("h4").text(
       `You selected ${STORE.movieTitle}, if this is correct click the Next button, if not choose a differnt movie`
     );
@@ -282,7 +267,6 @@ function getMovieResults(movieIdResults) {
 /*------------------Display Results--------------------*/
 // display results function
 function displayFoodResults(responseJsonFood) {
-  console.log(responseJsonFood);
   if (responseJsonFood.totalResults === 0) {
     $("main").html(`
       <div class="food-results-error">
@@ -310,7 +294,6 @@ function displayFoodResults(responseJsonFood) {
 }
 
 function displayMovieResults(responseJsonMovie) {
-  console.log(responseJsonMovie);
   $("main").html(`
   <div class="movie-results-bg">
   <h2>Anything look good?</h2>
@@ -331,7 +314,6 @@ function displayMovieResults(responseJsonMovie) {
 }
 
 function displayDateFoodResults(responseJsonFoodResults) {
-  console.log(responseJsonFoodResults);
   $("main").append(`
   <div class="food-results-final">
   <h2>Enjoy your Dinner</h2>
@@ -345,7 +327,6 @@ function displayDateFoodResults(responseJsonFoodResults) {
 }
 
 function displayDateMovieResults(responseJsonMovieResults) {
-  console.log(responseJsonMovieResults);
   $("main").append(`
   <div class="movie-results-final">
   <h2>Enjoy your Movie</h2>
