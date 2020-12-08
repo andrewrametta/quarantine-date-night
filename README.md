@@ -2,6 +2,8 @@
 
 ## Plan the perfect date night in
 
+[Live link to website](https://andrewrametta.github.io/quarantine-date-night/)
+
 Do you have a date night planned with your significant other soon? Are you tired of the same take out place? Are you finding it difficult to come up with a good movie to watch? Are you ready to spice things up as much as you can in a pandemic? Want some new inspiration in the kitchen? Then you have come to the right place!
 
 ![Title Screen](https://user-images.githubusercontent.com/73006425/101502124-94ac2f80-393e-11eb-9216-c6cf98651db9.png)
@@ -39,4 +41,4 @@ Once you have chosen your recipe and movie we will provide links to both. Your r
 
 We hope that with some inspiration from are search results you can pick the perfect recipe and movie for your next quarantined date night in. Enjoy! 
 
-
+The technology stack used in this app is as follows: *HTML *CSS *JavaScript *jQuery
