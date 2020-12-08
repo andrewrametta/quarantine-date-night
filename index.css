@@ -400,7 +400,7 @@ a:active {
   color: #b0e6db;
 }
 /* catch error */
-.js-error-messageFood {
+#js-error-messageFood {
   background-color: rgb(162, 162, 162);
   color: red;
   font-size: 22px;
@@ -408,7 +408,7 @@ a:active {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.js-error-messageMovie {
+#js-error-messageMovie {
   background-color: rgb(162, 162, 162);
   color: red;
   font-size: 22px;
@@ -471,5 +471,8 @@ a:active {
   }
   a {
     font-size: 24px;
+  }
+  div img {
+    margin: 20px;
   }
 }
